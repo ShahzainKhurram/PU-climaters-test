@@ -1,0 +1,807 @@
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    cursor: none; /* Custom cursor handled separately */
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Theme Variables */
+:root {
+    /* Light Theme Colors */
+    --background-color: #f5f5f5;
+    --text-color: #333333;
+    --header-background: #ffffff;
+    --nav-background: #333333;
+    --sub-nav-background: #e6e6e6;
+    --button-background: #4CAF50; /* Primary Green */
+    --button-text-color: #ffffff;
+    --toggle-color: #f1c40f; /* Moon Icon Color */
+    --link-color: #4CAF50;
+    --link-hover-color: #388E3C;
+    --card-background: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+/* Dark Theme Variables */
+body.dark-mode {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --header-background: #1f1f1f;
+    --nav-background: #1f1f1f;
+    --sub-nav-background: #2c2c2c;
+    --button-background: #e74c3c; /* Primary Red */
+    --button-text-color: #ffffff;
+    --toggle-color: #f39c12; /* Sun Icon Color */
+    --link-color: #f1c40f;
+    --link-hover-color: #e67e22;
+    --card-background: #1f1f1f;
+    --card-shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Apply Theme Variables */
+.header {
+    background-color: var(--header-background);
+    transition: background-color var(--transition-speed) ease;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.logo:hover {
+    color: var(--link-hover-color);
+}
+
+.home-icon {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.languages a {
+    margin-left: 15px;
+    color: #555555;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed), font-weight var(--transition-speed);
+}
+
+.languages a:hover,
+.languages a.active {
+    color: var(--link-color);
+    font-weight: bold;
+}
+
+/* Theme Toggle Button Styles */
+#theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 1.5rem;
+    color: var(--toggle-color);
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    outline: none;
+}
+
+#theme-toggle:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+#theme-icon {
+    transition: transform var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* Change Icon Rotation in Dark Mode */
+body.dark-mode #theme-icon {
+    transform: rotate(180deg);
+}
+
+/* Optional: Enhance Toggle Button Appearance */
+#theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode #theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Top Bar Styling */
+.top-bar {
+    background-color: var(--link-color);
+    height: 4px;
+    width: 100%;
+    animation: growWidth 1s ease-in-out;
+}
+
+/* Navigation Bar Styling */
+.nav-bar {
+    background-color: var(--nav-background);
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-bar a {
+    color: #ffffff;
+    margin: 0 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    position: relative;
+    font-family: var(--font-body);
+    transition: color var(--transition-speed);
+}
+
+.nav-bar a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--link-color);
+    transition: width var(--transition-speed);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav-bar a:hover {
+    color: var(--link-color);
+}
+
+.nav-bar a:hover::after {
+    width: 100%;
+}
+
+/* Sub-Navigation Bar Styling */
+.sub-nav {
+    background-color: var(--sub-nav-background);
+    padding: 10px 0;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.sub-nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.95rem;
+    transition: color var(--transition-speed), font-weight var(--transition-speed);
+    font-family: var(--font-body);
+}
+
+.sub-nav a:hover {
+    color: var(--link-color);
+    font-weight: bold;
+}
+
+/* Hero Section Styling */
+.hero-section {
+    position: relative;
+    background-image: url('https://source.unsplash.com/1600x900/?nature,environment');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, rgba(9, 167, 15, 0.6), rgba(76, 175, 80, 0.6)); /* Gradient Overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family: var(--font-heading);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 5px;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), color var(--transition-speed);
+    font-family: var(--font-body);
+}
+
+.primary-btn {
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+}
+
+.primary-btn:hover {
+    background-color: var(--link-hover-color);
+    transform: translateY(-3px);
+}
+
+.secondary-btn {
+    background-color: #ffffff;
+    color: var(--link-color);
+    border: 2px solid var(--link-color);
+}
+
+.secondary-btn:hover {
+    background-color: var(--link-color);
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* Main Content Styling */
+.main-content {
+    padding: 60px 0;
+}
+
+.main-content h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--link-color);
+    font-family: var(--font-heading);
+}
+
+/* Grid Layouts */
+.info-grid,
+.news-grid,
+.causes-grid,
+.effects-grid,
+.solutions-grid,
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+/* Card Styles */
+.card,
+.news-card,
+.effect-card,
+.resource-card,
+.solution-card,
+.cause-item {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--card-shadow);
+    overflow: hidden;
+    width: 100%;
+    max-width: 350px;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    font-family: var(--font-body);
+}
+
+.card:hover,
+.news-card:hover,
+.effect-card:hover,
+.resource-card:hover,
+.solution-card:hover,
+.cause-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px var(--card-shadow);
+}
+
+.card-img,
+.news-img,
+.effect-img,
+.resource-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform var(--transition-speed);
+}
+
+.card-img:hover,
+.news-img:hover,
+.effect-img:hover,
+.resource-img:hover {
+    transform: scale(1.05);
+}
+
+.card-content,
+.news-content,
+.effect-content,
+.resource-content,
+.solution-content,
+.cause-item {
+    padding: 20px;
+}
+
+.card-content h3,
+.news-content h3,
+.effect-content h3,
+.resource-content h3,
+.solution-content h3,
+.cause-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-family: var(--font-heading);
+}
+
+.card-content p,
+.news-content p,
+.effect-content p,
+.resource-content p,
+.solution-content p,
+.cause-item p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555555;
+}
+
+.read-more {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color var(--transition-speed);
+}
+
+.read-more:hover {
+    color: var(--link-hover-color);
+}
+
+/* About Section Styling */
+.about-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.about-img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--card-shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.about-img:hover {
+    transform: scale(1.02);
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555555;
+}
+
+.about-text .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+/* Causes Section Styling */
+.causes-section {
+    padding: 60px 0;
+}
+
+.causes-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--link-color);
+    font-family: var(--font-heading);
+}
+
+.cause-item i {
+    color: var(--link-color);
+    margin-bottom: 15px;
+    font-size: 3rem;
+}
+
+.causes-section .cause-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-family: var(--font-heading);
+}
+
+.causes-section .cause-item p {
+    font-size: 1rem;
+    color: #555555;
+}
+
+/* Effects Section Styling */
+.effects-section {
+    padding: 60px 0;
+}
+
+.effects-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--link-color);
+    font-family: var(--font-heading);
+}
+
+.effects-section .effect-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-family: var(--font-heading);
+}
+
+.effects-section .effect-content p {
+    font-size: 1rem;
+    color: #555555;
+}
+
+/* Solutions Section Styling */
+.solutions-section {
+    padding: 60px 0;
+}
+
+.solutions-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--link-color);
+    font-family: var(--font-heading);
+}
+
+.solution-item i {
+    color: var(--link-color);
+    margin-bottom: 15px;
+    font-size: 3rem;
+}
+
+.solutions-section .solution-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-family: var(--font-heading);
+}
+
+.solutions-section .solution-item p {
+    font-size: 1rem;
+    color: #555555;
+}
+
+/* Resources Section Styling */
+.resources-section {
+    padding: 60px 0;
+}
+
+.resources-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--link-color);
+    font-family: var(--font-heading);
+}
+
+/* Latest News Section Styling */
+.latest-news {
+    padding: 60px 0;
+}
+
+.latest-news h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--link-color);
+    font-family: var(--font-heading);
+}
+
+.latest-news .news-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-family: var(--font-heading);
+}
+
+.latest-news .news-content p {
+    font-size: 1rem;
+    color: #555555;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: var(--nav-background);
+    color: #ffffff;
+    padding: 30px 0;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed);
+    font-family: var(--font-body);
+}
+
+.footer-links a:hover {
+    color: var(--link-color);
+}
+
+.social-icons a {
+    color: #ffffff;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color var(--transition-speed);
+}
+
+.social-icons a:hover {
+    color: var(--link-color);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+}
+
+/* Cursor Styles */
+.cursor-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--link-color);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: background-color var(--transition-speed), transform 0.15s ease-out;
+    z-index: 10000;
+}
+
+.cursor-outline {
+    width: 35px;
+    height: 35px;
+    border: 2px solid var(--link-color);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: border-color var(--transition-speed), transform 0.25s ease-out;
+    z-index: 9999;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .featured-info .info-grid,
+    .latest-news .news-grid,
+    .causes-grid,
+    .effects-grid,
+    .solutions-grid,
+    .resources-grid {
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .card,
+    .news-card,
+    .effect-card,
+    .resource-card,
+    .solution-card,
+    .cause-item {
+        max-width: 100%;
+    }
+
+    .about-img {
+        max-width: 100%;
+    }
+
+    .footer-links a {
+        margin: 0 5px;
+    }
+
+    .social-icons a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --header-background: #1f1f1f;
+    --nav-background: #1f1f1f;
+    --sub-nav-background: #2c2c2c;
+    --button-background: #e74c3c; /* Primary Red */
+    --button-text-color: #ffffff;
+    --toggle-color: #f39c12; /* Sun Icon Color */
+    --link-color: #f1c40f;
+    --link-hover-color: #e67e22;
+    --card-background: #1f1f1f;
+    --card-shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Additional Enhancements */
+
+/* Sticky Navigation */
+.nav-bar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Button Accessibility */
+.btn:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Link Hover Effects */
+a.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Enhanced Footer */
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-links,
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons a {
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.social-icons a:hover {
+    color: var(--link-hover-color);
+    transform: scale(1.1);
+}
+
+/* Dark Mode Adjustments for Footer Links */
+body.dark-mode .footer-links a,
+body.dark-mode .social-icons a {
+    color: #ffffff;
+}
+
+body.dark-mode .footer-links a:hover,
+body.dark-mode .social-icons a:hover {
+    color: var(--link-hover-color);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    .main-content h2,
+    .causes-section h2,
+    .effects-section h2,
+    .solutions-section h2,
+    .resources-section h2,
+    .latest-news h2 {
+        font-size: 2rem;
+    }
+
+    .card-content h3,
+    .news-content h3,
+    .effect-content h3,
+    .resource-content h3,
+    .solution-content h3,
+    .cause-item h3 {
+        font-size: 1.2rem;
+    }
+}
